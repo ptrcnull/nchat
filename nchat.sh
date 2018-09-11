@@ -1,9 +1,6 @@
 #!/bin/bash
-read -p "IP: " i
-read -p "Port: " p
-read -p "Key: " k
 while :; do
-nc -l -p $p 2>/dev/null|openssl aes-256-cbc -d -a -k $k &
+nc -l -p $2 2>/dev/null|openssl aes-256-cbc -d -a -k $3 &
 read m
-echo $m|openssl aes-256-cbc -a -salt -k $k|nc $i $p -c
+echo $m|openssl aes-256-cbc -a -salt -k $3|nc $1 $2 -c
 done;
